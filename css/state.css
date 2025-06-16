@@ -1,0 +1,92 @@
+/* body {
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+h2, h4 {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+footer {
+  font-size: 0.85rem;
+  color: #6c757d;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+#info-sections {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+} */
+
+
+/* Base Styles */
+body {
+  background: linear-gradient(to right, #e0f7fa, #f1f8ff);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Headings */
+h2, h4, h5, h6 {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 1rem;
+}
+
+/* Info Section Card Styling */
+#info-sections {
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  margin-top: 30px;
+}
+
+/* CM Card Styling */
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border: none;
+}
+
+/* Footer Styling */
+footer {
+  font-size: 0.85rem;
+  color: #6c757d;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ddd;
+  background-color: #f8f9fa;
+}
+
+/* District Buttons */
+#district-groups .btn-outline-secondary {
+  border-color: #0d6efd;
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+#district-groups .btn-outline-secondary:hover {
+  background-color: #0d6efd;
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Utility Spacing */
+.mb-5 {
+  margin-bottom: 3rem !important;
+}

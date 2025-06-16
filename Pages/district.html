@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>District Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/district.css"/>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">IndiaInfo</a>
+      <div class="d-flex">
+        <a href="login.html" class="btn btn-light btn-sm me-2">Login</a>
+        <a href="signup.html" class="btn btn-warning btn-sm">Signup</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-4">
+    <h2 id="district-title" class="text-center mb-4">Loading...</h2>
+
+    <div class="row text-center mb-4">
+      <div class="col"><strong>Blocks:</strong> <span id="block-count">-</span></div>
+      <div class="col"><strong>Panchayats:</strong> <span id="panchayat-count">-</span></div>
+      <div class="col"><strong>Villages:</strong> <span id="village-count">-</span></div>
+    </div>
+
+    <div id="district-info">
+      <h4>Overview</h4>
+      <p id="overview-text">-</p>
+
+      <h4>Geography</h4>
+      <p id="geography-text">-</p>
+
+      <h4>Demographics</h4>
+      <p id="demographics-text">-</p>
+
+      <h4>Economy</h4>
+      <p id="economy-text">-</p>
+
+      <h4>Culture</h4>
+      <p id="culture-text">-</p>
+
+      <h4>Tourism</h4>
+      <p id="tourism-text">-</p>
+    </div>
+  </div>
+
+  <footer class="text-center text-muted mt-5 mb-3 small">
+    ⚠️ <strong>Disclaimer:</strong> The information provided on this website may not always be fully accurate or up-to-date. For official data, visit the respective government portals.
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const state = params.get('state');
+    const district = params.get('district');
+
+    if (!state || !district) {
+      document.getElementById('district-info').innerHTML = `<div class="alert alert-danger">Invalid district URL.</div>`;
+    } else {
+      document.getElementById('district-title').textContent = `${district}, ${state}`;
+
+      fetch(`/api/district?state=${encodeURIComponent(state)}&district=${encodeURIComponent(district)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            document.getElementById('district-info').innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+            return;
+          }
+
+          document.getElementById('block-count').textContent = data.blocks || '-';
+          document.getElementById('panchayat-count').textContent = data.panchayats || '-';
+          document.getElementById('village-count').textContent = data.villages || '-';
+
+          document.getElementById('overview-text').textContent = data.overview || 'No data available';
+          document.getElementById('geography-text').textContent = data.geography || 'No data available';
+          document.getElementById('demographics-text').textContent = data.demographics || 'No data available';
+          document.getElementById('economy-text').textContent = data.economy || 'No data available';
+          document.getElementById('culture-text').textContent = data.culture || 'No data available';
+          document.getElementById('tourism-text').textContent = data.tourism || 'No data available';
+        })
+        .catch(err => {
+          console.error(err);
+          document.getElementById('district-info').innerHTML = `<div class="alert alert-danger">Error loading data. Please try again.</div>`;
+        });
+    }
+  </script>
+</body>
+</html>
