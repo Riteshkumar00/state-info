@@ -12,6 +12,11 @@ app.use('/css', express.static(path.join(__dirname, '../css')));
 app.use('/js', express.static(__dirname));
 app.use('/', express.static(path.join(__dirname, '../Pages')));
 
+// ✅ Optional: Serve index.html on root "/"
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Pages', 'index.html'));
+});
+
 // ✅ MySQL connection
 // const db = mysql.createConnection({
 //   host: 'localhost',
