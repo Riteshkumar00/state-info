@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StateInfo - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">STATE INFO</a>
+      <div class="d-flex">
+        <a href="login.html" class="btn btn-light btn-sm me-2">Login</a>
+        <a href="signup.html" class="btn btn-warning btn-sm">Signup</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4 mb-5">
+    <h2 class="text-center mb-4">Select a State or Union Territory</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <script>
+        const states = [
+          "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+          "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
+          "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
+          "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
+          "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+          "Uttar Pradesh", "Uttarakhand", "West Bengal",
+          "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
+          "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
+        ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+          const container = document.querySelector(".row");
+          states.forEach(state => {
+            const col = document.createElement("div");
+            col.className = "col";
+
+            col.innerHTML = `
+              <div class="card h-100 text-center p-3">
+                <h5 class="card-title">${state}</h5>
+                <a href="state.html?name=${encodeURIComponent(state)}" class="btn btn-outline-primary mt-2">View Info</a>
+              </div>
+            `;
+
+            container.appendChild(col);
+          });
+        });
+      </script>
+    </div>
+  </div>
+
+  <!-- Footer will load from external file -->
+  <div id="footer-placeholder"></div>
+
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      });
+  </script>
+</body>
+</html>
